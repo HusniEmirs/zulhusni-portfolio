@@ -3,13 +3,15 @@ import { portfolio } from '../data/portfolio'
 
 type NavigationHref = (typeof portfolio.navigation)[number]['href']
 
-const phaseOneSectionHrefs = new Set<NavigationHref>([
+const implementedSectionHrefs = new Set<NavigationHref>([
   '#home',
   '#highlights',
+  '#experience',
+  '#projects',
 ])
 
 const navigationItems = portfolio.navigation.filter(({ href }) =>
-  phaseOneSectionHrefs.has(href),
+  implementedSectionHrefs.has(href),
 )
 
 const initials = portfolio.siteIdentity.name
