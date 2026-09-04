@@ -1,3 +1,8 @@
+import myAgriCensusLogo from '../assets/projects/myagricensus-logo.png'
+import myGeisLogo from '../assets/projects/mygeis-logo.png'
+import spaLogo from '../assets/projects/spa-logo.png'
+import sppLogo from '../assets/projects/spp-logo.png'
+
 type NavigationItem = {
   readonly label: string
   readonly href: `#${string}`
@@ -20,15 +25,23 @@ type ProfessionalExperience = {
   readonly focusAreas: readonly string[]
 }
 
-type SelectedProject = {
+type SkillContext = 'Basic hands-on' | 'Hands-on exposure'
+
+type ProjectLogo = {
+  readonly src: string
+  readonly alt: string
+}
+
+export type SelectedProject = {
   readonly name: string
   readonly organization: string
   readonly portfolioTitle: string
   readonly contributionAreas: readonly string[]
   readonly technologies?: readonly string[]
+  readonly technologyContext?: SkillContext
+  readonly contributionContext?: 'Supporting contribution'
+  readonly logo?: ProjectLogo
 }
-
-type SkillContext = 'Basic hands-on' | 'Hands-on exposure'
 
 type SkillItem = {
   readonly name: string
@@ -183,22 +196,34 @@ export const portfolio = {
         'MySQL',
         'Oracle',
       ],
+      logo: {
+        src: sppLogo,
+        alt: 'eSPP system logo',
+      },
     },
     {
       name: 'Malaysia Greenhouse Gas Emission Inventory System (MyGEIS)',
       organization: 'NRES',
       portfolioTitle: 'National Greenhouse Gas Data Management System',
       contributionAreas: [
-        'Contributed to assigned backend and frontend functionality with hands-on exposure to C# and .NET Core.',
-        'Supported defect investigation, database and integration work, and system testing.',
+        'Contributed to assigned backend and frontend functionality within an MVC-based application, with hands-on exposure to C# and .NET Core.',
+        'Supported defect investigation, database and integration work, and system testing within a Microsoft-oriented enterprise stack.',
+        'Worked with virtual-machine-based development and system environments, with exposure to Microsoft Azure and Microsoft SQL Server.',
         'Contributed to BRS and SRS documentation.',
       ],
       technologies: [
         'C#',
         '.NET Core',
-        'Databases',
-        'Enterprise web development',
+        'MVC',
+        'Microsoft Azure',
+        'Virtual Machines',
+        'Microsoft SQL Server',
       ],
+      technologyContext: 'Hands-on exposure',
+      logo: {
+        src: myGeisLogo,
+        alt: 'MyGEIS system logo',
+      },
     },
     {
       name: 'MyAgriCensus 2024',
@@ -209,6 +234,38 @@ export const portfolio = {
         'Implemented bug fixes and system enhancements, followed by regression verification and troubleshooting.',
         'Contributed to BRS, SRS, and SDS documentation.',
       ],
+      technologies: [
+        'PHP',
+        'JavaScript',
+        'jQuery',
+        'Bootstrap',
+        'DataTables',
+        'REST APIs',
+        'MySQL',
+        'Oracle',
+      ],
+      logo: {
+        src: myAgriCensusLogo,
+        alt: 'Department of Statistics Malaysia logo',
+      },
+    },
+    {
+      name: 'TERAS',
+      organization: 'Suruhanjaya Perkhidmatan Awam (SPA)',
+      portfolioTitle: 'Core Public Service Management System',
+      contributionAreas: [
+        'Supported selected maintenance and defect-resolution tasks, including investigation and resolution of assigned system tickets.',
+        'Performed small fixes and enhancements within an existing Laravel application.',
+        'Gained hands-on exposure to Laravel application flow and Livewire-based functionality.',
+        'Worked within an established enterprise codebase rather than building the overall system.',
+      ],
+      technologies: ['PHP', 'Laravel', 'Livewire'],
+      technologyContext: 'Hands-on exposure',
+      contributionContext: 'Supporting contribution',
+      logo: {
+        src: spaLogo,
+        alt: 'TERAS system logo',
+      },
     },
   ],
   technicalSkills: [

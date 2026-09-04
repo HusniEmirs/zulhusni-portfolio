@@ -1,8 +1,9 @@
-import { portfolio } from '../data/portfolio'
+import { portfolio, type SelectedProject } from '../data/portfolio'
 import useReveal from '../hooks/useReveal'
 
 function Projects() {
   const revealRef = useReveal<HTMLDivElement>()
+  const projects: readonly SelectedProject[] = portfolio.selectedProjects
 
   return (
     <section
@@ -23,19 +24,19 @@ function Projects() {
         </div>
 
         <div className="projects-list">
-          {portfolio.selectedProjects.map((project, index) => {
-            const technologies =
-              'technologies' in project ? project.technologies : undefined
-            const hasTechnologies = Boolean(technologies?.length)
+          {projects.map((project, index) => {
+            const hasTechnologies = Boolean(project.technologies?.length)
 
             return (
               <article
-                className={`project-panel${index === 0 ? ' project-panel-featured' : ''}`}
+                className={`project-panel${index === 0 ? ' project-panel-featured' : ''}${project.contributionContext ? ' project-panel-supporting' : ''}`}
                 data-reveal-item
                 data-reveal-order={index + 1}
                 key={project.name}
               >
-                <header className="project-header">
+                <header
+                  className={`project-header${project.logo ? ' project-header-with-logo' : ''}`}
+                >
                   <p className="project-number" aria-hidden="true">
                     {String(index + 1).padStart(2, '0')}
                   </p>
@@ -47,7 +48,23 @@ function Projects() {
                       <span>Organization</span>
                       {project.organization}
                     </p>
+                    {project.contributionContext && (
+                      <p className="project-context">
+                        {project.contributionContext}
+                      </p>
+                    )}
                   </div>
+
+                  {project.logo && (
+                    <div className="project-logo">
+                      <img
+                        src={project.logo.src}
+                        alt={project.logo.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
                 </header>
 
                 <div
@@ -67,9 +84,16 @@ function Projects() {
 
                   {hasTechnologies && (
                     <div className="project-technologies">
-                      <p className="project-detail-label">Technologies</p>
+                      <div className="project-technologies-heading">
+                        <p className="project-detail-label">Technologies</p>
+                        {project.technologyContext && (
+                          <p className="project-technology-context">
+                            {project.technologyContext}
+                          </p>
+                        )}
+                      </div>
                       <ul aria-label={`${project.portfolioTitle} technologies`}>
-                        {technologies?.map((technology) => (
+                        {project.technologies?.map((technology) => (
                           <li key={technology}>{technology}</li>
                         ))}
                       </ul>
