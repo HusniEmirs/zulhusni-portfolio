@@ -69,6 +69,7 @@ export type PortfolioData = {
   readonly hero: {
     readonly headline: string
     readonly summary: string
+    readonly layers: readonly string[]
   }
   readonly about: string
   readonly professionalHighlights: readonly ProfessionalHighlight[]
@@ -103,6 +104,8 @@ export const portfolio = {
     role: 'Software Developer',
   },
   navigation: [
+    { label: 'Home', href: '#home' },
+    { label: 'Highlights', href: '#highlights' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Projects', href: '#projects' },
@@ -115,6 +118,7 @@ export const portfolio = {
       'Software Developer building and supporting enterprise systems across application, API, database, and testing layers.',
     summary:
       'Hands-on experience developing government and enterprise web systems using PHP, JavaScript, REST APIs, MySQL and Oracle, with involvement across implementation, integration, defect resolution, testing and technical documentation.',
+    layers: ['Frontend', 'Backend', 'API', 'Database', 'Testing'],
   },
   about:
     'I work across more than just one layer of an application. My experience includes frontend and backend development, REST API integration, database troubleshooting, defect investigation, acceptance testing, and technical documentation within enterprise and government systems. I’m comfortable working in existing codebases, understanding business rules, and tracing issues across the application stack.',
