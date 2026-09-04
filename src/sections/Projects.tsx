@@ -57,12 +57,17 @@ function Projects() {
 
                   {project.logo && (
                     <div className="project-logo">
-                      <img
-                        src={project.logo.src}
-                        alt={project.logo.alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      <span className="project-logo-label" aria-hidden="true">
+                        Project identity
+                      </span>
+                      <span className="project-logo-media">
+                        <img
+                          src={project.logo.src}
+                          alt={project.logo.alt}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
                     </div>
                   )}
                 </header>
